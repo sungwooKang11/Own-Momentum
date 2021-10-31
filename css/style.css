@@ -1,3 +1,16 @@
 .hidden {
     display: none;
 }
+
+.clock{
+    position: absolute;
+    left: 50%;
+    top: 1%;
+}
+
+#greeting{
+    position: absolute;
+    left: 65%;
+    top: 1%;
+
+}
