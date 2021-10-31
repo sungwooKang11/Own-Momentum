@@ -4,7 +4,7 @@ const todoList = document.querySelector("#todo-list");
 
 const TODOS_KEY = "todos";
 
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
     localStorage.setItem(TODOS_KEY, JSON.stringify(toDos));
@@ -13,12 +13,15 @@ function saveToDos() {
 function dltToDo(event) {
     const li = event.target.parentElement;    
     li.remove(); 
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));  
+    saveToDos(); 
 }
 
 function makeToDo(newToDo) {
     const li = document.createElement("li");
+    li.id = newToDo.id;
     const span = document.createElement("span");
-    span.innerText = newToDo;
+    span.innerText = newToDo.text;
     const btn = document.createElement("button");
     btn.innerText = "❌";
     btn.addEventListener("click", dltToDo);
@@ -32,8 +35,12 @@ function hdlToDoSbmt(e) {
     e.preventDefault();
     const newToDo = todoInput.value;
     todoInput.value = "";
-    toDos.push(newToDo);
-    makeToDo(newToDo); 
+    const newToDoObj = {
+        text:newToDo,
+        id: Date.now(),
+    };
+    toDos.push(newToDoObj);
+    makeToDo(newToDoObj); 
     saveToDos();
 }
 
@@ -43,9 +50,6 @@ const savedToDos = localStorage.getItem(TODOS_KEY);
 
 if(savedToDos !== null) {
     const parsedToDos = JSON.parse(savedToDos);
-    console.log(parsedToDos);
-    parsedToDos.forEach((item) => console.log("This is", item));
+    toDos = parsedToDos;
+    parsedToDos.forEach(makeToDo);
 }
- console.log("hi");
-
-
