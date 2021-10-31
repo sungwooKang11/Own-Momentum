@@ -29,7 +29,7 @@ function hdlGreetings(username) {
 
 const savedUsernm = localStorage.getItem(USERNM_KEY);
 
-if(savedUsernm === null) {
+if (savedUsernm === null) {
     loginForm.classList.remove(HIDDEN_CLASSNAME);
     loginForm.addEventListener("submit", clickbtn);
 }else {
