@@ -16,4 +16,4 @@ function play() {
   setInterval(getTime, 1000);
 }
  
-play();
+play(); 

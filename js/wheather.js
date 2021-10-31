@@ -17,4 +17,4 @@ function geoError() {
     alert("Can't find you. Where?");
 }
 
-navigator.geolocation.getCurrentPosition(geoGood, geoError);
+navigator.geolocation.getCurrentPosition(geoGood, geoError);  
